@@ -1,0 +1,74 @@
+{
+  "contract_version": "1.0",
+  "external_writes": false,
+  "data_origin": "synthetic",
+  "dimensions": {
+    "account_id": "account_synthetic",
+    "currency": "USD",
+    "timezone": "Asia/Singapore",
+    "attribution": "SYNTHETIC_ONLY_click_window_for_tests",
+    "conversion_event": "SYNTHETIC_PURCHASE"
+  },
+  "date_range": {
+    "since": "2026-09-28",
+    "until": "2026-09-29"
+  },
+  "summary": {
+    "rows": 4,
+    "totals": {
+      "impressions": 4000.0,
+      "clicks": 80.0,
+      "spend": 60.0,
+      "conversions": 4.0,
+      "revenue": 240.0
+    },
+    "known_rows": {
+      "impressions": 4,
+      "clicks": 4,
+      "spend": 4,
+      "conversions": 4,
+      "revenue": 4
+    },
+    "metrics": {
+      "ctr_percent": 2.0,
+      "cpc": 0.75,
+      "cpm": 15.0,
+      "conversions_per_click_proxy_percent": 5.0,
+      "cpa": 15.0,
+      "roas": 4.0
+    }
+  },
+  "campaigns": {
+    "campaign_synthetic": {
+      "rows": 4,
+      "totals": {
+        "impressions": 4000.0,
+        "clicks": 80.0,
+        "spend": 60.0,
+        "conversions": 4.0,
+        "revenue": 240.0
+      },
+      "known_rows": {
+        "impressions": 4,
+        "clicks": 4,
+        "spend": 4,
+        "conversions": 4,
+        "revenue": 4
+      },
+      "metrics": {
+        "ctr_percent": 2.0,
+        "cpc": 0.75,
+        "cpm": 15.0,
+        "conversions_per_click_proxy_percent": 5.0,
+        "cpa": 15.0,
+        "roas": 4.0
+      }
+    }
+  },
+  "warnings": [
+    "DATA_ORIGIN_SYNTHETIC: not verified real account performance",
+    "MATURITY_NOT_VERIFIED: confirm reporting lag and attribution window before decisions",
+    "NOT_CAUSAL: attributed conversions/ROAS do not establish incrementality or profit"
+  ],
+  "decision": "DESCRIPTIVE_ONLY_NO_AUTOMATIC_BUDGET_CHANGE"
+}

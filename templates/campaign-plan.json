@@ -1,0 +1,17 @@
+{
+  "contract_name": "chatads.plan",
+  "contract_version": "1.0",
+  "plan_id": "local-plan-template",
+  "created_at": "2026-10-04T00:00:00Z",
+  "producer": {"product": "ChatAds Skill", "skill_id": "chatads", "edition": "lite", "version": "1.1.0"},
+  "status": "PLAN_READY",
+  "publish_authorized": false,
+  "external_writes": false,
+  "plan": {
+    "business": {},
+    "objectives": [],
+    "campaigns": [],
+    "assumptions": [],
+    "open_questions": []
+  }
+}

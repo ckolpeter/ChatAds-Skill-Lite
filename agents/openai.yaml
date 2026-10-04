@@ -1,0 +1,6 @@
+interface:
+  display_name: "ChatAds Skill Lite"
+  short_description: "離線規劃廣告流程，產出可攜式 campaign plan。"
+  default_prompt: "使用 $chatads 以 Beginner First 問商業問題，產生離線規劃與 ChatAds Plan Contract；只停在 PLAN_READY。"
+policy:
+  allow_implicit_invocation: true

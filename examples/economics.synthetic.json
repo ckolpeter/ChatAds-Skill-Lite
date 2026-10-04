@@ -1,0 +1,7 @@
+{
+  "currency": "USD",
+  "net_revenue_per_order": 60,
+  "variable_cost_per_order": 35,
+  "target_profit_per_order": 10,
+  "click_to_purchase_cvr": 0.02
+}

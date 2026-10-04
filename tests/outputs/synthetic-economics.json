@@ -1,0 +1,18 @@
+{
+  "currency": "USD",
+  "assumptions": {
+    "currency": "USD",
+    "net_revenue_per_order": 60,
+    "variable_cost_per_order": 35,
+    "target_profit_per_order": 10,
+    "click_to_purchase_cvr": 0.02
+  },
+  "contribution_before_ads": 25.0,
+  "break_even_cpa": 25.0,
+  "target_cpa_ceiling": 15.0,
+  "break_even_roas": 2.4,
+  "break_even_cpc": 0.5,
+  "target_cpc_ceiling": 0.3,
+  "status": "ASSUMPTION_BASED_NOT_A_BID_RECOMMENDATION",
+  "external_writes": false
+}

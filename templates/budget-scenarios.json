@@ -1,0 +1,8 @@
+{
+  "currency": null,
+  "total_budget": null,
+  "days": null,
+  "shares": [0.5, 0.75, 1.0],
+  "status": "ASSUMPTION_ONLY_NOT_APPROVED",
+  "external_writes": false
+}

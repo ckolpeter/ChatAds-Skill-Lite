@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.1",
+  "mode": "beginner",
+  "offer": null,
+  "customer": null,
+  "goal": null,
+  "market": null,
+  "landing_url": null,
+  "spend_limit": {"currency": null, "amount": null, "period_days": null},
+  "measurement": null,
+  "external_writes": false
+}
