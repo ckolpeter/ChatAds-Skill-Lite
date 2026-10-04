@@ -15,3 +15,5 @@ python3 scripts/lite_release_gate.py
 ```
 
 Python 3.10+ and the standard library are sufficient. Lite has no network, credential, connector, Runmo, or Pro package dependency.
+
+License: Apache-2.0
