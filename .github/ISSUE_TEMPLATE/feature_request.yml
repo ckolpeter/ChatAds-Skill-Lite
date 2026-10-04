@@ -1,0 +1,54 @@
+name: Feature request
+description: Propose an improvement that remains within ChatAds Skill Lite's offline planning scope.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem should this feature solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Proposed workflow
+      description: Describe the desired user flow or behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: beneficiaries
+    attributes:
+      label: Who benefits?
+      description: Which users or use cases benefit from this change?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lite_scope
+    attributes:
+      label: Does this remain offline and planning-only?
+      options:
+        - "Yes"
+        - "Unsure"
+        - "No — this likely belongs outside Lite"
+    validations:
+      required: true
+
+  - type: textarea
+    id: contract
+    attributes:
+      label: ChatAds Plan Contract impact
+      description: Does this add, remove, rename, or reinterpret any chatads.plan field?
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: markdown
+    attributes:
+      value: |
+        Live account access, ad publishing, budget mutations, credential handling, and other live-write capabilities are outside ChatAds Skill Lite scope.

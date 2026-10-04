@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Compile Python
+        run: |
+          python3 -m py_compile             scripts/ads_toolkit.py             scripts/beginner_toolkit.py             scripts/lite_release_gate.py
+
+      - name: Validate JSON
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          for path in sorted(Path(".").rglob("*.json")):
+              if ".git" in path.parts:
+                  continue
+              json.loads(path.read_text(encoding="utf-8"))
+              print(f"{path}: OK")
+          PY
+
+      - name: Lite release gate
+        run: python3 scripts/lite_release_gate.py
+
+      - name: Verify release manifest
+        run: sha256sum -c MANIFEST.sha256

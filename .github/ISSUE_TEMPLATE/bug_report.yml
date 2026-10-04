@@ -1,0 +1,68 @@
+name: Bug report
+description: Report a reproducible problem in ChatAds Skill Lite.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Never include credentials, cookies, API keys, live account IDs, private campaign exports, or customer data.
+
+  - type: input
+    id: version
+    attributes:
+      label: ChatAds Skill Lite version
+      placeholder: v1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: Python 3.12.0
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: macOS 15 / Ubuntu 24.04 / Windows 11
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Command or workflow used
+      description: Include the smallest reproducible command or workflow.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproducible input
+      description: Use synthetic or redacted data only. Remove all secrets and private account/customer information.
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, API keys, cookies, account IDs, and private campaign/customer data.
+          required: true
