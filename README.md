@@ -20,4 +20,6 @@ python3 scripts/lite_release_gate.py
 
 Python 3.10+ and the standard library are sufficient. Lite has no network, credential, connector, Runmo, or Pro package dependency.
 
+Best-practices hardening: [audit](docs/BEST_PRACTICES_AUDIT.md) · [model eval matrix](evals/MODEL_EVAL_MATRIX.md). Cross-model lanes remain NOT_RUN until observed.
+
 License: Apache-2.0
