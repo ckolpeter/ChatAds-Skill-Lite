@@ -423,6 +423,61 @@ def validate_plan(plan: dict[str, Any], *, today: dt.date | None = None) -> dict
             "publish_authorized": False, "as_of": local_today.isoformat()}
 
 
+FORBIDDEN_CONTRACT_KEYS = {
+    "access_token", "api_key", "cookie", "cookies", "secret", "password",
+    "connector_payload", "connector_payloads", "upload_id", "upload_ids",
+    "live_campaign_id", "live_campaign_ids", "live_ad_group_id", "live_ad_group_ids",
+    "live_ad_id", "live_ad_ids", "write_authorization", "write_authorized",
+}
+
+
+def validate_contract(plan: Any) -> dict[str, Any]:
+    """Validate the public chatads.plan@1.0 envelope and Lite safety boundary."""
+    if not isinstance(plan, dict):
+        raise ValidationError("plan: expected an object")
+    if plan.get("contract_name") != "chatads.plan":
+        raise ValidationError("contract_name: expected chatads.plan")
+    if plan.get("contract_version") != CONTRACT_VERSION:
+        raise ValidationError(f"contract_version: expected {CONTRACT_VERSION}")
+    text(plan.get("plan_id"), "plan_id")
+    text(plan.get("created_at"), "created_at")
+    producer = plan.get("producer")
+    if not isinstance(producer, dict):
+        raise ValidationError("producer: expected an object")
+    if producer.get("skill_id") != "chatads":
+        raise ValidationError("producer.skill_id: expected chatads")
+    if producer.get("edition") != "lite":
+        raise ValidationError("producer.edition: expected lite")
+    if plan.get("status") != "PLAN_READY":
+        raise ValidationError("status: expected PLAN_READY")
+    if plan.get("publish_authorized") is not False:
+        raise ValidationError("publish_authorized: expected boolean false")
+    if plan.get("external_writes") is not False:
+        raise ValidationError("external_writes: expected boolean false")
+    if not isinstance(plan.get("plan"), dict):
+        raise ValidationError("plan: expected an object")
+
+    def walk(value: Any, path: str = "plan") -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                normalized = key.casefold().replace("-", "_") if isinstance(key, str) else key
+                if normalized in FORBIDDEN_CONTRACT_KEYS:
+                    raise ValidationError(f"{path}.{key}: forbidden live/credential field")
+                walk(child, f"{path}.{key}")
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                walk(child, f"{path}[{index}]")
+
+    walk(plan)
+    return {
+        "status": "VALID_CONTRACT",
+        "contract_name": plan["contract_name"],
+        "contract_version": plan["contract_version"],
+        "publish_authorized": False,
+        "external_writes": False,
+    }
+
+
 def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     result: dict[str, Any] = {}
     for key, value in pairs:
@@ -469,7 +524,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--version", action="version", version=VERSION)
     sub = parser.add_subparsers(dest="command", required=True)
-    for command in ("analyze", "economics", "validate-plan"):
+    for command in ("analyze", "economics", "validate-plan", "validate-contract"):
         p = sub.add_parser(command)
         p.add_argument("input")
         p.add_argument("--output", help="new JSON output path; existing files are not overwritten")
@@ -491,9 +546,11 @@ def main(argv: list[str] | None = None) -> int:
             result = analyze_rows(load_metrics(args.input))
         elif args.command == "economics":
             result = economics(load_json(args.input))
-        else:
+        elif args.command == "validate-plan":
             as_of = iso_date(args.as_of, "as_of") if args.as_of else None
             result = validate_plan(load_json(args.input), today=as_of)
+        else:
+            result = validate_contract(load_json(args.input))
         emit(result, args.output)
         return 2 if result.get("status") == "BLOCKED" else 0
     except (ValidationError, OSError, UnicodeError, json.JSONDecodeError) as exc:

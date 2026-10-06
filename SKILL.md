@@ -101,12 +101,18 @@ No field in a Lite plan can authorize a future write. Local IDs are planning IDs
 ```bash
 python3 scripts/ads_toolkit.py analyze examples/metrics.synthetic.json
 python3 scripts/ads_toolkit.py economics examples/economics.synthetic.json
-python3 scripts/ads_toolkit.py validate-plan templates/campaign-plan.json
+python3 scripts/ads_toolkit.py validate-contract templates/campaign-plan.json
+# Detailed campaign/preflight checks use a detailed planning fixture.
+python3 scripts/ads_toolkit.py validate-plan <detailed-campaign-plan.json>
 python3 scripts/ads_toolkit.py utm 'https://example.com/product' --campaign trial --content angle-a
 python3 scripts/beginner_toolkit.py onboarding templates/beginner-onboarding.json
 ```
 
 The scripts read and write local files only. A successful local check means the plan is structurally ready; it does not mean a platform account is eligible, live capability exists, or any change is approved.
+
+`validate-contract` checks the public `chatads.plan@1.0` envelope and Lite safety
+invariants. `validate-plan` remains the detailed campaign/preflight completeness
+check and expects its separate detailed planning schema.
 
 ## Contracts
 

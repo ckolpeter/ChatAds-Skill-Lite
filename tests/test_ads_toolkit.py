@@ -40,6 +40,29 @@ class LiteToolTests(unittest.TestCase):
         self.assertEqual(plan["status"], "PLAN_READY")
         self.assertFalse(plan["publish_authorized"])
 
+    def test_public_contract_validator_accepts_template(self):
+        plan = json.loads((Path(__file__).parents[1] / "templates/campaign-plan.json").read_text())
+        out = a.validate_contract(plan)
+        self.assertEqual(out["status"], "VALID_CONTRACT")
+        self.assertFalse(out["external_writes"])
+
+    def test_public_contract_requires_exact_booleans(self):
+        plan = {"contract_name": "chatads.plan", "contract_version": "1.0",
+                "plan_id": "id", "created_at": "now",
+                "producer": {"skill_id": "chatads", "edition": "lite"},
+                "status": "PLAN_READY", "publish_authorized": "false",
+                "external_writes": False, "plan": {}}
+        with self.assertRaises(a.ValidationError):
+            a.validate_contract(plan)
+
+    def test_public_contract_rejects_structural_credential_key_but_not_copy(self):
+        plan = json.loads((Path(__file__).parents[1] / "templates/campaign-plan.json").read_text())
+        plan["plan"]["copy"] = "Never share your API key"
+        self.assertEqual(a.validate_contract(plan)["status"], "VALID_CONTRACT")
+        plan["plan"]["api_key"] = "placeholder"
+        with self.assertRaises(a.ValidationError):
+            a.validate_contract(plan)
+
 
 if __name__ == "__main__":
     unittest.main()

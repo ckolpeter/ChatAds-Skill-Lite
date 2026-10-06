@@ -14,6 +14,7 @@ Run from this directory:
 python3 -m unittest discover -s tests -v
 python3 scripts/ads_toolkit.py analyze examples/metrics.synthetic.json
 python3 scripts/ads_toolkit.py economics examples/economics.synthetic.json
+python3 scripts/ads_toolkit.py validate-contract templates/campaign-plan.json
 python3 scripts/beginner_toolkit.py onboarding templates/beginner-onboarding.json
 python3 scripts/lite_release_gate.py
 ```
