@@ -1,0 +1,18 @@
+{
+  "contract_name": "chatads.brief",
+  "contract_version": "1.0",
+  "business": null,
+  "offer": null,
+  "customer": null,
+  "goal": null,
+  "market": null,
+  "landing_url": null,
+  "spend_limit": {
+    "currency": null,
+    "amount": null,
+    "period_days": null
+  },
+  "measurement": null,
+  "evidence": [],
+  "open_questions": []
+}

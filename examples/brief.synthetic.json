@@ -1,0 +1,25 @@
+{
+  "contract_name": "chatads.brief",
+  "contract_version": "1.0",
+  "business": "Synthetic Learning Studio",
+  "offer": "Fictional online workshop",
+  "customer": "Adults learning illustration",
+  "goal": "Workshop enquiries",
+  "market": "Taiwan / Traditional Chinese",
+  "landing_url": "https://example.com/workshop",
+  "spend_limit": {
+    "currency": "TWD",
+    "amount": 1000,
+    "period_days": 7
+  },
+  "measurement": null,
+  "evidence": [
+    {
+      "claim": "The fictional workshop is delivered online.",
+      "source": "Synthetic workshop sheet; not real product evidence"
+    }
+  ],
+  "open_questions": [
+    "Can the enquiry action be measured?"
+  ]
+}

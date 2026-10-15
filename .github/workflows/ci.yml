@@ -31,7 +31,7 @@ jobs:
 
       - name: Compile Python
         run: |
-          python3 -m py_compile             scripts/ads_toolkit.py             scripts/beginner_toolkit.py             scripts/lite_release_gate.py
+          python3 -m py_compile             scripts/ads_toolkit.py             scripts/beginner_toolkit.py             scripts/brief_toolkit.py             scripts/lite_release_gate.py
 
       - name: Validate JSON
         run: |

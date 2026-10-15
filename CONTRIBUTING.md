@@ -16,7 +16,7 @@ From the repository root:
 
 ```bash
 python3 -m unittest discover -s tests -v
-python3 -m py_compile scripts/ads_toolkit.py scripts/beginner_toolkit.py scripts/lite_release_gate.py
+python3 -m py_compile scripts/ads_toolkit.py scripts/beginner_toolkit.py scripts/brief_toolkit.py scripts/lite_release_gate.py
 python3 scripts/lite_release_gate.py
 ```
 
