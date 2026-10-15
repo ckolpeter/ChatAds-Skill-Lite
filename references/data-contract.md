@@ -41,4 +41,4 @@ input_contract: chatads.brief@1.0
 output_contract: chatads.plan@1.0
 ```
 
-`chatads.brief@1.0` is a future input contract; Lite does not invent a second formal schema for it.
+`chatads.brief@1.0` is the independent input contract defined in [Brief Contract](../docs/BRIEF_CONTRACT.md), with a bundled [JSON Schema](../schemas/chatads.brief.v1.schema.json). Beginner onboarding v1.1 remains supported through an explicit offline conversion; Brief and Plan are not interchangeable.

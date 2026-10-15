@@ -25,3 +25,9 @@ Python 3.10+ and the standard library are sufficient. Lite has no network, crede
 Best-practices hardening: [audit](docs/BEST_PRACTICES_AUDIT.md) · [model eval matrix](evals/MODEL_EVAL_MATRIX.md). Scoped Claude Code baseline and self-correction runs are recorded there; unobserved scenarios remain NOT_RUN.
 
 License: Apache-2.0
+
+## Portable business input
+
+See [chatads.brief@1.0](docs/BRIEF_CONTRACT.md) for the independent input contract,
+[blank template](templates/business-brief.json), [synthetic example](examples/brief.synthetic.json),
+and offline validation/conversion commands. Existing Beginner Onboarding remains unchanged.
